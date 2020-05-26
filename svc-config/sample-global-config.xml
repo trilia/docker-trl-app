@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:startup-config
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:ns1='http://com.olip.fwk/config/startup'
+    xsi:schemaLocation='http://com.olip.fwk/config/startup startup-config.xsd'>
+    <ns1:config-store>
+        <ns1:store-type>filesystem</ns1:store-type>
+        <ns1:store-value>/trilia/app/app-config</ns1:store-value>
+    </ns1:config-store>
+    <ns1:config-elements>
+        <ns1:config-element>
+            <ns1:element-name>olip.mt</ns1:element-name>
+            <ns1:config-attributes>
+                <ns1:config-attribute>
+                    <ns1:attr-name>enabled</ns1:attr-name>
+                    <ns1:attr-value>true</ns1:attr-value>
+                </ns1:config-attribute>
+				<ns1:config-attribute>
+                    <ns1:attr-name>max.tenant.per.cluster</ns1:attr-name>
+                    <ns1:attr-value>15</ns1:attr-value>
+                </ns1:config-attribute>
+            </ns1:config-attributes>
+        </ns1:config-element>
+		<ns1:config-element>
+            <ns1:element-name>datagrid.provider</ns1:element-name>
+            <ns1:config-attributes>
+                <ns1:config-attribute>
+                    <ns1:attr-name>provider.name</ns1:attr-name>
+                    <ns1:attr-value>hazelcast</ns1:attr-value>
+                </ns1:config-attribute>
+            </ns1:config-attributes>
+        </ns1:config-element>
+    </ns1:config-elements>
+
+</ns1:startup-config>

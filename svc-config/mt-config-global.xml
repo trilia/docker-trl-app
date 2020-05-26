@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<ns1:mt-config
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:ns1='http://com.olip.fwk/config/mt'
+    xsi:schemaLocation='http://com.olip.fwk/config/mt mt-config.xsd'>
+    
+    <ns1:tenant>
+        <ns1:tenant-id>default</ns1:tenant-id>
+        <ns1:tenant-name>Default Tenant</ns1:tenant-name>
+        <ns1:security-models>
+            <ns1:default-model>
+                <ns1:model-name>HTTP_BASIC</ns1:model-name>
+            </ns1:default-model>
+            <ns1:supported-models>
+                <ns1:model-name>OAUTH2</ns1:model-name>
+                <ns1:model-name>FEDERATION</ns1:model-name>
+            </ns1:supported-models>
+        </ns1:security-models>
+        <ns1:resource-group>config:resource-group:default</ns1:resource-group>
+    </ns1:tenant>
+    <ns1:tenant>
+        <ns1:tenant-id>myTenant1</ns1:tenant-id>
+        <ns1:tenant-name>Test Tenant 1</ns1:tenant-name>
+        <ns1:security-models>
+            <ns1:default-model>
+                <ns1:model-name>HTTP_BASIC</ns1:model-name>
+            </ns1:default-model>
+            <ns1:supported-models>
+                <ns1:model-name>OAUTH2</ns1:model-name>
+                <ns1:model-name>FEDERATION</ns1:model-name>
+            </ns1:supported-models>
+        </ns1:security-models>
+        <ns1:resource-group>config:resource-group:standard</ns1:resource-group>
+    </ns1:tenant>
+	<ns1:tenant>
+        <ns1:tenant-id>myTenant2</ns1:tenant-id>
+        <ns1:tenant-name>Test Tenant 2</ns1:tenant-name>
+        <ns1:security-models>
+            <ns1:default-model>
+                <ns1:model-name>HTTP_BASIC</ns1:model-name>
+            </ns1:default-model>
+            <ns1:supported-models>
+                <ns1:model-name>OAUTH2</ns1:model-name>
+                <ns1:model-name>FEDERATION</ns1:model-name>
+            </ns1:supported-models>
+        </ns1:security-models>
+        <ns1:resource-group>config:resource-group:standard</ns1:resource-group>
+    </ns1:tenant>
+    
+</ns1:mt-config>

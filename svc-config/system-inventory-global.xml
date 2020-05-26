@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<ns1:system-inventory
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:ns1='http://com.olip.fwk/config/inventory'
+    xsi:schemaLocation='http://com.olip.fwk/config/inventory system-inventory.xsd'>
+    
+    <ns1:core-group>
+		<ns1:system-info>
+            <ns1:system-name>Resource Groups</ns1:system-name>
+            <ns1:description>Resource Groups to control amount of resources available to various tenants</ns1:description>
+            <ns1:load-sequence>1</ns1:load-sequence>
+            <ns1:tenant-specific>false</ns1:tenant-specific>
+            <ns1:config-mgmt>
+                <ns1:mgmt-type>local</ns1:mgmt-type>
+                <ns1:allow-nonuniform>false</ns1:allow-nonuniform>
+                <ns1:allow-versioning>false</ns1:allow-versioning>
+                <ns1:mgmt-iface>com.olp.fwk.common.ResourceGroupMXBean</ns1:mgmt-iface>
+                <ns1:mgmt-iface-impl>com.olp.fwk.config.impl.ResourceGroupConfiguration</ns1:mgmt-iface-impl>
+                <ns1:config-marshaller>com.olp.fwk.config.impl.XmlResourceGroupConfigMarshallerImpl</ns1:config-marshaller>
+                <ns1:artifacts>
+                    <ns1:artifact>
+                        <ns1:artifact-uid>resource-group</ns1:artifact-uid>
+                        <ns1:marshalling-type>xml</ns1:marshalling-type>
+                    </ns1:artifact>
+                </ns1:artifacts>
+                <ns1:config-status>out-of-box</ns1:config-status>
+                <ns1:allow-ootb-startup>true</ns1:allow-ootb-startup>
+            </ns1:config-mgmt>
+        </ns1:system-info>
+		
+		<ns1:system-info>
+            <ns1:system-name>Multi-Tenancy</ns1:system-name>
+            <ns1:description>Setup to configure multi-tenancy</ns1:description>
+            <ns1:load-sequence>2</ns1:load-sequence>
+            <ns1:tenant-specific>false</ns1:tenant-specific>
+            <ns1:config-mgmt>
+                <ns1:mgmt-type>local</ns1:mgmt-type>
+                <ns1:allow-nonuniform>false</ns1:allow-nonuniform>
+                <ns1:allow-versioning>false</ns1:allow-versioning>
+                <ns1:mgmt-iface>com.olp.fwk.common.MultiTenantConfigurationMXBean</ns1:mgmt-iface>
+                <ns1:mgmt-iface-impl>com.olp.fwk.config.impl.MultiTenantConfiguration</ns1:mgmt-iface-impl>
+                <ns1:config-marshaller>com.olp.fwk.config.impl.XmlMtConfigMarshallerImpl</ns1:config-marshaller>
+                <ns1:artifacts>
+                    <ns1:artifact>
+                        <ns1:artifact-uid>mt-config</ns1:artifact-uid>
+                        <ns1:marshalling-type>xml</ns1:marshalling-type>
+                    </ns1:artifact>
+                </ns1:artifacts>
+                <ns1:config-status>out-of-box</ns1:config-status>
+                <ns1:allow-ootb-startup>true</ns1:allow-ootb-startup>
+            </ns1:config-mgmt>
+        </ns1:system-info>
+		<ns1:system-info>
+            <ns1:system-name>Data Grid</ns1:system-name>
+            <ns1:description>Configuration info for Data Grid or In-Memory appliances</ns1:description>
+            <ns1:load-sequence>3</ns1:load-sequence>
+            <ns1:tenant-specific>false</ns1:tenant-specific>
+            <ns1:config-mgmt>
+                <ns1:mgmt-type>local</ns1:mgmt-type>
+                <ns1:allow-nonuniform>false</ns1:allow-nonuniform>
+                <ns1:allow-versioning>false</ns1:allow-versioning>
+                <ns1:mgmt-iface>com.olp.fwk.common.DataGridConfigurationMXBean</ns1:mgmt-iface>
+                <ns1:mgmt-iface-impl>com.olp.fwk.config.impl.DataGridConfiguration</ns1:mgmt-iface-impl>
+                <ns1:config-marshaller>com.olp.fwk.config.impl.DataGridConfigMarshallerImpl</ns1:config-marshaller>
+                <ns1:artifacts>
+					<ns1:artifact>
+						<ns1:artifact-uid>datagrid-basic</ns1:artifact-uid>
+                        <ns1:marshalling-type>properties</ns1:marshalling-type>
+					</ns1:artifact>
+                    <ns1:artifact>
+                        <ns1:artifact-uid>hazelcast-datagrid-config</ns1:artifact-uid>
+                        <ns1:marshalling-type>xml</ns1:marshalling-type>
+                    </ns1:artifact>
+                </ns1:artifacts>
+                <ns1:config-status>out-of-box</ns1:config-status>
+                <ns1:allow-ootb-startup>true</ns1:allow-ootb-startup>
+            </ns1:config-mgmt>
+        </ns1:system-info>
+		<ns1:system-info>
+            <ns1:system-name>Web Session Replication</ns1:system-name>
+            <ns1:description>Configuration info for Web Session Replication provider</ns1:description>
+            <ns1:load-sequence>4</ns1:load-sequence>
+            <ns1:tenant-specific>false</ns1:tenant-specific>
+            <ns1:config-mgmt>
+                <ns1:mgmt-type>local</ns1:mgmt-type>
+                <ns1:allow-nonuniform>false</ns1:allow-nonuniform>
+                <ns1:allow-versioning>false</ns1:allow-versioning>
+                <ns1:mgmt-iface>com.olp.fwk.common.WebSessionConfigurationMXBean</ns1:mgmt-iface>
+                <ns1:mgmt-iface-impl>com.olp.fwk.config.impl.WebSessionConfiguration</ns1:mgmt-iface-impl>
+                <ns1:config-marshaller>com.olp.fwk.config.impl.WebSessionConfigMarshallerImpl</ns1:config-marshaller>
+                <ns1:artifacts>
+					<ns1:artifact>
+						<ns1:artifact-uid>web-session-config</ns1:artifact-uid>
+                        <ns1:marshalling-type>properties</ns1:marshalling-type>
+					</ns1:artifact>
+                </ns1:artifacts>
+                <ns1:config-status>out-of-box</ns1:config-status>
+                <ns1:allow-ootb-startup>true</ns1:allow-ootb-startup>
+            </ns1:config-mgmt>
+        </ns1:system-info>
+		<ns1:system-info>
+            <ns1:system-name>Product Hub DB Configuration</ns1:system-name>
+            <ns1:description>Configuration info for Product Hub Document Database. At present using Mongo DB</ns1:description>
+            <ns1:load-sequence>5</ns1:load-sequence>
+            <ns1:tenant-specific>false</ns1:tenant-specific>
+            <ns1:config-mgmt>
+                <ns1:mgmt-type>local</ns1:mgmt-type>
+                <ns1:allow-nonuniform>false</ns1:allow-nonuniform>
+                <ns1:allow-versioning>false</ns1:allow-versioning>
+                <ns1:mgmt-iface>com.olp.fwk.common.MongoPersistenceConfigurationMXBean</ns1:mgmt-iface>
+                <ns1:mgmt-iface-impl>com.olp.fwk.config.impl.MongoPersistenceConfiguration</ns1:mgmt-iface-impl>
+                <ns1:config-marshaller>com.olp.fwk.config.impl.MongoConfigMarshallerImpl</ns1:config-marshaller>
+                <ns1:artifacts>
+					<ns1:artifact>
+						<ns1:artifact-uid>mongo-persistence</ns1:artifact-uid>
+                        <ns1:marshalling-type>properties</ns1:marshalling-type>
+					</ns1:artifact>
+                </ns1:artifacts>
+                <ns1:config-status>out-of-box</ns1:config-status>
+                <ns1:allow-ootb-startup>true</ns1:allow-ootb-startup>
+            </ns1:config-mgmt>
+        </ns1:system-info>
+	</ns1:core-group>
+    
+    <ns1:extension-group>
+        <ns1:system-info>
+            <ns1:system-name>Olive UI</ns1:system-name>
+            <ns1:description>Olive UI Configurations</ns1:description>
+            <ns1:load-sequence>1</ns1:load-sequence>
+            <ns1:tenant-specific>true</ns1:tenant-specific>
+            <ns1:config-mgmt>
+                <ns1:mgmt-type>local</ns1:mgmt-type>
+                <ns1:allow-nonuniform>false</ns1:allow-nonuniform>
+                <ns1:allow-versioning>false</ns1:allow-versioning>
+                <ns1:mgmt-iface>com.olp.fwk.common.UIConfigurationMXBean</ns1:mgmt-iface>
+                <ns1:mgmt-iface-impl>com.olp.fwk.ui.impl.UIConfiguration</ns1:mgmt-iface-impl>
+                <ns1:config-marshaller>com.olp.fwk.config.impl.XmlUIConfigMarshallerImpl</ns1:config-marshaller>
+                <ns1:artifacts>
+                    <ns1:artifact>
+                        <ns1:artifact-uid>olive-ui-config</ns1:artifact-uid>
+                        <ns1:marshalling-type>xml</ns1:marshalling-type>
+                    </ns1:artifact>
+                </ns1:artifacts>
+                <ns1:config-status>out-of-box</ns1:config-status>
+                <ns1:allow-ootb-startup>true</ns1:allow-ootb-startup>
+            </ns1:config-mgmt>
+        </ns1:system-info>
+    </ns1:extension-group>
+    
+    <ns1:custom-group/>
+    
+</ns1:system-inventory>

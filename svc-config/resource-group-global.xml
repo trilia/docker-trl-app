@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<ns1:system-config
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:ns1='http://com.olip.fwk/config/system'
+    xsi:schemaLocation='http://com.olip.fwk/config/system system-config.xsd'>
+    <ns1:config-elements>
+        <ns1:config-element>
+            <ns1:element-name>default</ns1:element-name>
+            <ns1:config-attributes>
+                <ns1:config-attribute>
+                    <ns1:attr-name>max.conc.web.threads</ns1:attr-name>
+                    <ns1:attr-value>100</ns1:attr-value>
+                </ns1:config-attribute>
+                <ns1:config-attribute>
+                    <ns1:attr-name>max.conc.mobile.threads</ns1:attr-name>
+                    <ns1:attr-value>100</ns1:attr-value>
+                </ns1:config-attribute>
+            </ns1:config-attributes>
+        </ns1:config-element>
+        <ns1:config-element>
+            <ns1:element-name>standard</ns1:element-name>
+            <ns1:config-attributes>
+                <ns1:config-attribute>
+                    <ns1:attr-name>max.conc.web.threads</ns1:attr-name>
+                    <ns1:attr-value>80</ns1:attr-value>
+                </ns1:config-attribute>
+                <ns1:config-attribute>
+                    <ns1:attr-name>max.conc.mobile.threads</ns1:attr-name>
+                    <ns1:attr-value>80</ns1:attr-value>
+                </ns1:config-attribute>
+            </ns1:config-attributes>
+        </ns1:config-element>
+    </ns1:config-elements>
+</ns1:system-config>

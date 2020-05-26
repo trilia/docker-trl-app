@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:system-config
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:ns1='http://com.olip.fwk/config/system'
+    xsi:schemaLocation='http://com.olip.fwk/config/system system-config.xsd'>
+    <!--
+    <ns1:system-info>
+        <ns1:system-name>Olive UI</ns1:system-name>
+        <ns1:description>Olive UI Configurations</ns1:description>
+        <ns1:allow-nonuniform>false</ns1:allow-nonuniform>
+        <ns1:config-mgmt>local</ns1:config-mgmt>
+    </ns1:system-info>
+    -->
+    <ns1:config-elements>
+        <ns1:config-element>
+            <ns1:element-name>olip.ui.theme</ns1:element-name>
+            <ns1:config-attributes>
+                <ns1:config-attribute>
+                    <ns1:attr-name>default.theme</ns1:attr-name>
+                    <ns1:attr-value>olive</ns1:attr-value>
+                </ns1:config-attribute>
+                <ns1:config-attribute>
+                    <ns1:attr-name>current.theme</ns1:attr-name>
+                    <ns1:attr-value>purple</ns1:attr-value>
+                </ns1:config-attribute>
+            </ns1:config-attributes>
+        </ns1:config-element>
+    </ns1:config-elements>
+
+</ns1:system-config>
