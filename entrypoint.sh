@@ -17,6 +17,8 @@ echo $HOST_USER_NAME
 echo $HOST_GROUP_ID
 echo $HOST_GROUP_NAME
 
+LOG_FILE="/trilia/wildfly/log/init-wildfly.log"
+
 
 if [ -z $HOST_USER_ID ]
 then
@@ -117,13 +119,18 @@ then
   echo "Done creating user"
 fi
 
+if [ -f $LOG_FILE ]
+then
+  /usr/local/bin/gosu $ACTIVE_USER_NAME touch $LOG_FILE
+fi
+
 #JBOSS_HOME="$1"
 if [ -z $JBOSS_HOME ]
 then
-  echo "Jboss home not passed as argument"
+  echo "Jboss home not passed as argument" | tee -a $LOG_FILE
   exit 1
 else
-  echo "Jboss home - $JBOSS_HOME "
+  echo "Jboss home - $JBOSS_HOME " | tee -a $LOG_FILE
 fi
 
 chown -R $ACTIVE_USER_NAME:$ACTIVE_GROUP_NAME /wildfly
@@ -134,9 +141,50 @@ adminPwd="$ADMIN_PWD"
 
 $JBOSS_HOME/bin/add-user.sh admin ${adminPwd:-Welcome12#}  --silent
 
+if [ -z $MONGO_HOSTNAME ]
+then
+  echo "Mongo DB host information not found ! Defaulting to 127.0.0.1:27017" | tee -a $LOG_FILE
+  MONGO_HOSTNAME="127.0.0.1:27017"
+else
+  echo "Mongo DB host - $MONGO_HOSTNAME " | tee -a $LOG_FILE
+fi
+
+if [ -z $MONGO_DB_NAME ]
+then
+  echo "Mongo DB database name not found ! Defaulting to admin" | tee -a $LOG_FILE
+  MONGO_DB_NAME="admin"
+else
+  echo "Mongo DB database name - $MONGO_DB_NAME " | tee -a $LOG_FILE
+fi
+
+if [ -z $MONGO_USER_NAME ]
+then
+  echo "Mongo DB username not found ! Defaulting to prodhub" | tee -a $LOG_FILE
+  MONGO_USER_NAME="prodhub"
+else
+  echo "Mongo DB username - $MONGO_USER_NAME " | tee -a $LOG_FILE
+fi
+
+if [ -z $MONGO_USER_PASSWORD ]
+then
+  echo "Mongo DB user password not found ! Will use default password" | tee -a $LOG_FILE
+  MONGO_USER_NAME="prodhubdev"
+else
+  echo "Mongo DB user password found " | tee -a $LOG_FILE
+fi
+
+if [ -z $MONGO_AUTH_DB ]
+then
+  echo "Mongo DB authentication database name not found ! Defaulting to admin" | tee -a $LOG_FILE
+  MONGO_AUTH_DB="admin"
+else
+  echo "Mongo DB database name - $MONGO_AUTH_DB " | tee -a $LOG_FILE
+fi
+
+
 #Copy the existing config files
 
-cd $JBOSS_HOME/standalone/configuration 
+cd $JBOSS_HOME/standalone/configuration
 
 /usr/local/bin/gosu $ACTIVE_USER_NAME mv standalone-ha.xml  standalone-ha.xml.org
 /usr/local/bin/gosu $ACTIVE_USER_NAME mv standalone-full-ha.xml  standalone-full-ha.xml.org
@@ -148,7 +196,11 @@ echo "Copying configuration artifacts ..."
 /usr/local/bin/gosu $ACTIVE_USER_NAME cp /wildfly/artifacts/standalone-ha.xml $JBOSS_HOME/standalone/configuration/
 /usr/local/bin/gosu $ACTIVE_USER_NAME cp /wildfly/artifacts/standalone-full-ha.xml $JBOSS_HOME/standalone/configuration/
 
-/usr/local/bin/gosu $ACTIVE_USER_NAME cp /wildfly/artifacts/OlpUIFwk2-1.0-SNAPSHOT.war $JBOSS_HOME/standalone/deployments/
+/usr/local/bin/gosu $ACTIVE_USER_NAME cp /wildfly/artifacts/TriliaMain-1.0-SNAPSHOT.war $JBOSS_HOME/standalone/deployments/
+
+/usr/local/bin/gosu $ACTIVE_USER_NAME cp /trilia/templates/svc-config/* /trilia/svc/svc-config
+
+/usr/local/bin/gosu $ACTIVE_USER_NAME sed -i "s/{{\s*mongo_hostname\s*}}/$MONGO_HOSTNAME/; s/{{\s*mongo_db_name\s*}}/$MONGO_DB_NAME/; s/{{\s*mongo_user_name\s*}}/$MONGO_USER_NAME/; s/{{\s*mongo_user_password\s*}}/$MONGO_USER_PASSWORD/; s/{{\s*mongo_auth_db\s*}}/$MONGO_AUTH_DB/" /trilia/svc/svc-config/mongo-persistence-global.properties
 
 echo "End copying artifacts"
 
@@ -161,7 +213,3 @@ echo "Done with setup"
 echo "Starting Jboss server..."
 
 /usr/local/bin/gosu $ACTIVE_USER_NAME $JBOSS_HOME/bin/standalone.sh --properties="/trilia/svc/svc-config/app.properties" -b "0.0.0.0" "-bmanagement" "0.0.0.0" "${@:2}"
-
-#/bin/bash
-
-
